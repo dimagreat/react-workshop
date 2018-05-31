@@ -3,15 +3,17 @@ import { connect } from "react-redux";
 
 class Basket extends Component {
   render() {
-    const { products } = this.props;
+    const { boughtProducts } = this.props;
 
-    return <div>{products.map(({ title, price }) => <div>{title}</div>)}</div>;
+    return (
+      <div>{boughtProducts.map(({ title, price }) => <div>{title}</div>)}</div>
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    products: state.products
+    boughtProducts: state.boughtProducts
   };
 }
 

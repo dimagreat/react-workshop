@@ -1,26 +1,23 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import ProductService from "../../services/ProductService";
-import Product from "../../containers/product/Product";
+import Product from "../product/Product";
 
-export default class ProductList extends Component {
-  state = {
-    items: []
-  };
-
-  async componentDidMount() {
-    const items = await ProductService.getProducts();
-    this.setState({ items });
-  }
-
+class ProductList extends Component {
   render() {
-    const { items } = this.state;
+    const { products } = this.props;
     return (
       <div>
-        {items.map(({ title, price }) => (
-          <Product title={title} price={price} />
-        ))}
+        {products.map((product, key) => <Product {...product} key={key} />)}
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    products: state.products
+  };
+}
+
+export default connect(mapStateToProps)(ProductList);

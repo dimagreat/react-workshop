@@ -1,17 +1,24 @@
 import {
-  ADD_PRODUCT
-} from './actionTypes';
+  BUY_PRODUCT,
+  GET_PRODUCTS
+} from './actions';
 
-const initialState = {
-  products: []
+export const initialState = {
+  boughtProducts: [],
+  products: [],
 }
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_PRODUCT:
+    case BUY_PRODUCT:
       return {
         ...state,
-        products: [...state.products, action.payload]
+        boughtProducts: [...state.boughtProducts, action.payload]
+      }
+    case GET_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload
       }
     default:
       return state

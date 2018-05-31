@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import Search from "../search/Search";
 import ProductList from "../product-list/ProductList";
-import Basket from "../../containers/basket/Basket";
+import Basket from "../basket/Basket";
+
+import { fetchProducts } from "../../redux/actions";
 
 class App extends Component {
   render() {
@@ -18,6 +21,16 @@ class App extends Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    this.props.fetchProducts();
+  }
 }
 
-export default App;
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchProducts: () => dispatch(fetchProducts())
+  };
+}
+
+export default connect(null, mapDispatchToProps)(App);
