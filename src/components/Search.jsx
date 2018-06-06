@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { fetchProducts } from "../../redux/actions";
+import { fetchProducts } from "../redux/actions";
 
 class Search extends Component {
   state = {
@@ -10,9 +10,16 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="Search">
-        <input type="text" onChange={this.onChangeText} />
-        <button onClick={this.onSearch}>Search</button>
+      <div className="search">
+        <input
+          className="search__input"
+          type="text"
+          placeholder="Более 1000 товаров"
+          onChange={this.onChangeText}
+        />
+        <button className="search__button" onClick={this.onSearch}>
+          <i className="fas fa-search" />
+        </button>
       </div>
     );
   }
@@ -37,4 +44,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(Search);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Search);
